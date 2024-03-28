@@ -1,6 +1,5 @@
 const books = [];
 const RENDER_EVENT = 'render-book';
-const RENDER_EVENT2 = 'render-book-2';
 
 document.addEventListener('DOMContentLoaded', function () {
   const submitForm = document.getElementById('inputBook');
@@ -12,38 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener(RENDER_EVENT, function () {
-  console.log(books);
-  // const incompleteBookList = document.getElementById('incompleteList');
-  // incompleteBookList.innerHTML = '';
-  // console.log('RENDER EVENT: tengah');
-
-  for (const bookItem of books) {
-    // console.log(bookItem.checkBook);
-    console.log("loop bookItem");
-    if (bookItem.checkBook) {
-
-      const completeBookList = document.getElementById('completeList');
-      completeBookList.innerHTML = '';
-
-      const bookElement = makeBook(bookItem);
-      completeBookList.append(bookElement);
-
-      console.log('masuk CHECK');
-
-    } else {
-
-      const incompleteBookList = document.getElementById('incompleteList');
-      incompleteBookList.innerHTML = '';
-      
-      const bookElement = makeBook(bookItem);
-      incompleteBookList.append(bookElement);
-    
-      console.log('masuk NO CHECK');
-    }
-  }
-});
-
-document.addEventListener(RENDER_EVENT2, function () {
   console.log(books);
   const incompleteBookList = document.getElementById('incompleteList');
   incompleteBookList.innerHTML = '';
@@ -93,7 +60,7 @@ function addBook() {
   const bookObject = generateBookObject(generatedID, bookTitle, bookAuthor, bookYear, bookCheck);
   books.push(bookObject);
 
-  document.dispatchEvent(new Event(RENDER_EVENT2));
+  document.dispatchEvent(new Event(RENDER_EVENT));
   
   // console.log('addBook: aman');
 
