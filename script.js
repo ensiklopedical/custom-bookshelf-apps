@@ -17,6 +17,17 @@ document.addEventListener(RENDER_EVENT, function () {
   console.log('RENDER EVENT: tengah');
 
   for (const bookItem of books) {
+    console.log(bookItem.checkBook);
+    if (bookItem.checkBook) {
+
+      const completeBookList = document.getElementById('completeList');
+      completeBookList.innerHTML = '';
+
+      const bookElement = makeBook(bookItem);
+      completeBookList.append(bookElement);
+
+      continue;
+    }
     const bookElement = makeBook(bookItem);
     
     incompleteBookList.append(bookElement);
@@ -31,13 +42,14 @@ function generateId() {
   return +new Date();
 }
 
-function generateBookObject(id, book, author, year) {
+function generateBookObject(id, book, author, year, checkBook) {
   console.log('generateBookObject : aman');
   return {
     id,
     book,
     author,
-    year
+    year,
+    checkBook
   }
 }
 
@@ -45,10 +57,11 @@ function addBook() {
   const bookTitle = document.getElementById('inputTitle').value;
   const bookAuthor = document.getElementById('inputAuthor').value;
   const bookYear = document.getElementById('inputYear').value;
+  const checkBook = document.getElementById('inputIsComplete').checked;
 
   // const timestamp = document.getElementById('date').value;
   const generatedID = generateId();
-  const bookObject = generateBookObject(generatedID, bookTitle, bookAuthor, bookYear);
+  const bookObject = generateBookObject(generatedID, bookTitle, bookAuthor, bookYear, checkBook);
   //const bookObject = generateTodoObject(generatedID, textTodo, timestamp, false);
   books.push(bookObject);
 
@@ -96,4 +109,5 @@ function makeBook(bookObject) {
 
   return itemBookContainer;
 }
+
 
