@@ -1,5 +1,6 @@
 const books = [];
 const RENDER_EVENT = 'render-book';
+const RENDER_EVENT2 = 'render-book-2';
 
 document.addEventListener('DOMContentLoaded', function () {
   const submitForm = document.getElementById('inputBook');
@@ -21,6 +22,28 @@ document.addEventListener(RENDER_EVENT, function () {
     const bookElement = makeBook(bookItem);
     
     incompleteBookList.append(bookElement);
+  }
+
+  console.log('RENDER EVENT: aman');
+});
+
+document.addEventListener(RENDER_EVENT2, function () {
+  console.log(books);
+  const incompleteBookList = document.getElementById('incompleteList');
+  incompleteBookList.innerHTML = '';
+  const completeBookList = document.getElementById('completeList');
+  completeBookList.innerHTML = '';
+
+  console.log('RENDER EVENT: tengah');
+
+  for (const bookItem of books) {
+    if (bookItem.check) {
+      const bookElement = makeBook(bookItem);
+      completeBookList.append(bookElement);
+    } else {    
+      const bookElement = makeBook(bookItem);
+      incompleteBookList.append(bookElement);
+    }
   }
 
   console.log('RENDER EVENT: aman');
@@ -55,7 +78,7 @@ function addBook() {
   //const bookObject = generateTodoObject(generatedID, textTodo, timestamp, false);
   books.push(bookObject);
 
-  document.dispatchEvent(new Event(RENDER_EVENT));
+  document.dispatchEvent(new Event(RENDER_EVENT2));
   
   console.log('addBook: aman');
 
