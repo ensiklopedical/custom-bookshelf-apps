@@ -6,19 +6,19 @@ document.addEventListener('DOMContentLoaded', function () {
   submitForm.addEventListener('submit', function (event) {
     event.preventDefault();
     addBook();
-    this.reset();
   });
+   // this.reset();
 });
 
 document.addEventListener(RENDER_EVENT, function () {
   console.log(books);
-  const incompleteBookList = document.getElementById('incompleteList');
-  incompleteBookList.innerHTML = '';
-
-  console.log('RENDER EVENT: tengah');
+  // const incompleteBookList = document.getElementById('incompleteList');
+  // incompleteBookList.innerHTML = '';
+  // console.log('RENDER EVENT: tengah');
 
   for (const bookItem of books) {
-    console.log(bookItem.checkBook);
+    // console.log(bookItem.checkBook);
+    console.log("loop bookItem");
     if (bookItem.checkBook) {
 
       const completeBookList = document.getElementById('completeList');
@@ -27,23 +27,28 @@ document.addEventListener(RENDER_EVENT, function () {
       const bookElement = makeBook(bookItem);
       completeBookList.append(bookElement);
 
-      continue;
-    }
-    const bookElement = makeBook(bookItem);
-    
-    incompleteBookList.append(bookElement);
-  }
+      console.log('masuk CHECK');
 
-  console.log('RENDER EVENT: aman');
+    } else {
+
+      const incompleteBookList = document.getElementById('incompleteList');
+      incompleteBookList.innerHTML = '';
+      
+      const bookElement = makeBook(bookItem);
+      incompleteBookList.append(bookElement);
+    
+      console.log('masuk NO CHECK');
+    }
+  }
 });
 
 function generateId() {
-  console.log('generateID: aman');
+  // console.log('generateID: aman');
   return +new Date();
 }
 
 function generateBookObject(id, book, author, year, checkBook) {
-  console.log('generateBookObject : aman');
+  // console.log('generateBookObject : aman');
   return {
     id,
     book,
@@ -67,7 +72,7 @@ function addBook() {
 
   document.dispatchEvent(new Event(RENDER_EVENT));
   
-  console.log('addBook: aman');
+  // console.log('addBook: aman');
 
 }
 
@@ -105,7 +110,7 @@ function makeBook(bookObject) {
   itemBookContainer.append(bookTitle, bookAuthor, bookYear, actionContainer);
   itemBookContainer.setAttribute('id', `book-${bookObject.id}`);
 
-  console.log('makeBook: aman');
+  // console.log('makeBook: aman');
 
   return itemBookContainer;
 }
