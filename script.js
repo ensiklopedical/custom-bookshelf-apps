@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
   submitForm.addEventListener('submit', function (event) {
     event.preventDefault();
     addBook();
+    this.reset();
   });
 });
 
@@ -35,7 +36,6 @@ document.addEventListener(RENDER_EVENT, function () {
 
   console.log('RENDER EVENT: aman');
 });
-
 
 function generateId() {
   console.log('generateID: aman');
