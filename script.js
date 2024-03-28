@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
   submitForm.addEventListener('submit', function (event) {
     event.preventDefault();
     addBook();
+    this.reset();
   });
 });
 
@@ -31,13 +32,14 @@ function generateId() {
   return +new Date();
 }
 
-function generateBookObject(id, book, author, year) {
+function generateBookObject(id, book, author, year, check) {
   console.log('generateBookObject : aman');
   return {
     id,
     book,
     author,
-    year
+    year,
+    check
   }
 }
 
@@ -45,10 +47,11 @@ function addBook() {
   const bookTitle = document.getElementById('inputTitle').value;
   const bookAuthor = document.getElementById('inputAuthor').value;
   const bookYear = document.getElementById('inputYear').value;
+  const bookCheck = document.getElementById('inputIsComplete').checked;
 
   // const timestamp = document.getElementById('date').value;
   const generatedID = generateId();
-  const bookObject = generateBookObject(generatedID, bookTitle, bookAuthor, bookYear);
+  const bookObject = generateBookObject(generatedID, bookTitle, bookAuthor, bookYear, bookCheck);
   //const bookObject = generateTodoObject(generatedID, textTodo, timestamp, false);
   books.push(bookObject);
 
