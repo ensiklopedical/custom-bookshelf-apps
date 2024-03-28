@@ -1,11 +1,13 @@
 const books = [];
 const RENDER_EVENT = 'render-book';
+const RENDER_EVENT2 = 'render-book-2';
 
 document.addEventListener('DOMContentLoaded', function () {
   const submitForm = document.getElementById('inputBook');
   submitForm.addEventListener('submit', function (event) {
     event.preventDefault();
     addBook();
+    this.reset();
   });
    // this.reset();
 });
@@ -42,19 +44,42 @@ document.addEventListener(RENDER_EVENT, function () {
   }
 });
 
+document.addEventListener(RENDER_EVENT2, function () {
+  console.log(books);
+  const incompleteBookList = document.getElementById('incompleteList');
+  incompleteBookList.innerHTML = '';
+  const completeBookList = document.getElementById('completeList');
+  completeBookList.innerHTML = '';
+
+  console.log('RENDER EVENT: tengah');
+
+  for (const bookItem of books) {
+    if (bookItem.check) {
+      const bookElement = makeBook(bookItem);
+      completeBookList.append(bookElement);
+    } else {    
+      const bookElement = makeBook(bookItem);
+      incompleteBookList.append(bookElement);
+    }
+  }
+
+  console.log('RENDER EVENT: aman');
+});
+
+
 function generateId() {
   // console.log('generateID: aman');
   return +new Date();
 }
 
-function generateBookObject(id, book, author, year, checkBook) {
-  // console.log('generateBookObject : aman');
+function generateBookObject(id, book, author, year, check) {
+  console.log('generateBookObject : aman');
   return {
     id,
     book,
     author,
     year,
-    checkBook
+    check
   }
 }
 
@@ -62,15 +87,15 @@ function addBook() {
   const bookTitle = document.getElementById('inputTitle').value;
   const bookAuthor = document.getElementById('inputAuthor').value;
   const bookYear = document.getElementById('inputYear').value;
-  const checkBook = document.getElementById('inputIsComplete').checked;
+  const bookCheck = document.getElementById('inputIsComplete').checked;
 
   // const timestamp = document.getElementById('date').value;
   const generatedID = generateId();
-  const bookObject = generateBookObject(generatedID, bookTitle, bookAuthor, bookYear, checkBook);
+  const bookObject = generateBookObject(generatedID, bookTitle, bookAuthor, bookYear, bookCheck);
   //const bookObject = generateTodoObject(generatedID, textTodo, timestamp, false);
   books.push(bookObject);
 
-  document.dispatchEvent(new Event(RENDER_EVENT));
+  document.dispatchEvent(new Event(RENDER_EVENT2));
   
   // console.log('addBook: aman');
 
