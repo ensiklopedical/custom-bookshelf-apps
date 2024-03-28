@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
     addBook();
     this.reset();
   });
-   // this.reset();
 });
 
 document.addEventListener(RENDER_EVENT, function () {
@@ -89,10 +88,9 @@ function addBook() {
   const bookYear = document.getElementById('inputYear').value;
   const bookCheck = document.getElementById('inputIsComplete').checked;
 
-  // const timestamp = document.getElementById('date').value;
+  
   const generatedID = generateId();
   const bookObject = generateBookObject(generatedID, bookTitle, bookAuthor, bookYear, bookCheck);
-  //const bookObject = generateTodoObject(generatedID, textTodo, timestamp, false);
   books.push(bookObject);
 
   document.dispatchEvent(new Event(RENDER_EVENT2));
