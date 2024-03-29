@@ -1,5 +1,9 @@
 const books = [];
 const RENDER_EVENT = 'render-book';
+const removeSearchButton = document.createElement('button');
+const submitSearch = document.getElementById('searchBook');
+
+
 
 function saveData() {
   localStorage.setItem('BOOKS', JSON.stringify(books));
@@ -25,19 +29,34 @@ function searchBook() {
   document.dispatchEvent(new CustomEvent(RENDER_EVENT, { detail: searchResult }));
   console.log('searchBook: aman');
 
-  /*
+  
   //document.getElementById('searchTitle').value = '';
 
-  const removeSearchButton = document.createElement('button');
+  
+  AddRemoveSearch();
+  
+}
+
+function AddRemoveSearch() {
+  // const removeSearchButton = document.createElement('button');
   removeSearchButton.classList.add('XXX');
   removeSearchButton.innerText = "X";
-  // Remove search result
-  // const removeSearch = document.getElementById('searchSubmit');
+  
+  //const submitSearch = document.getElementById('searchBook');
+  submitSearch.append(removeSearchButton);
+  console.log('removeSearch: aman')
+  
   removeSearchButton.addEventListener('click', function () {
+    removeSearch();
+    removeSearchButton.remove();
+  })
+}
+
+function removeSearch() {
+
     document.dispatchEvent(new Event(RENDER_EVENT));
     document.getElementById('searchTitle').value = '';
-  });
-  */
+
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -230,6 +249,8 @@ function addBookToCompleted(id) {
   bookItem.isComplete = true;
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
+  removeSearchButton.remove();
+  document.getElementById('searchTitle').value = '';
 }
 
 function undoBookFromCompleted(id) {
@@ -237,6 +258,8 @@ function undoBookFromCompleted(id) {
   bookItem.isComplete = false;
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
+  removeSearchButton.remove();
+  document.getElementById('searchTitle').value = '';
 }
 
 function removeBook(id) {
@@ -244,6 +267,8 @@ function removeBook(id) {
   books.splice(bookIndex, 1);
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
+  removeSearchButton.remove();
+  document.getElementById('searchTitle').value = '';
 }
 
 
