@@ -80,18 +80,42 @@ function makeBook(bookObject) {
   bookYear.innerText = bookObject.year;
 
   // Action Button
-  const doneButton = document.createElement('button');
-  doneButton.classList.add('green');
-  doneButton.innerText = "Done Read";
-
   const removeButton = document.createElement('button');
   removeButton.classList.add('red');
   removeButton.innerText = "Remove Book";
 
   // Action Container
-  const actionContainer = document.createElement('div');
-  actionContainer.classList.add('action');
-  actionContainer.append(doneButton, removeButton);
+  
+
+  if (bookObject.check){
+    // =============Selesai Dibaca================
+    const undoButton = document.createElement('button');
+    undoButton.classList.add('yellow');
+    undoButton.innerText = "Undo Read";
+
+    const actionContainer = document.createElement('div');
+    actionContainer.classList.add('action');
+    actionContainer.append(undoButton, removeButton);
+
+    undoButton.addEventListener('click', function () {
+      bookObject.check = false;
+      document.dispatchEvent(new Event(RENDER_EVENT));
+    });
+  } else if (!bookObject.check){
+  // =============Belum Selesai Dibaca================
+    const doneButton = document.createElement('button');
+    doneButton.classList.add('green');
+    doneButton.innerText = "Done Read";
+
+    const actionContainer = document.createElement('div');
+    actionContainer.classList.add('action');
+    actionContainer.append(doneButton, removeButton);
+
+    doneButton.addEventListener('click', function () {
+      bookObject.check = true;
+      document.dispatchEvent(new Event(RENDER_EVENT));
+    });
+  }
 
 
   // Item Book Container 
