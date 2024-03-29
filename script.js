@@ -16,6 +16,30 @@ function loadDataFromStorage() {
   }
 }
 
+
+function searchBook() {
+  const searchQuery = document.getElementById('searchTitle').value.toLowerCase();
+  const searchResult = books.filter((book) => book.book.toLowerCase().includes(searchQuery));
+
+  // Dispatch a custom event with the search result
+  document.dispatchEvent(new CustomEvent(RENDER_EVENT, { detail: searchResult }));
+  console.log('searchBook: aman');
+
+  /*
+  //document.getElementById('searchTitle').value = '';
+
+  const removeSearchButton = document.createElement('button');
+  removeSearchButton.classList.add('XXX');
+  removeSearchButton.innerText = "X";
+  // Remove search result
+  // const removeSearch = document.getElementById('searchSubmit');
+  removeSearchButton.addEventListener('click', function () {
+    document.dispatchEvent(new Event(RENDER_EVENT));
+    document.getElementById('searchTitle').value = '';
+  });
+  */
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   loadDataFromStorage();
   const submitForm = document.getElementById('inputBook');
@@ -24,10 +48,20 @@ document.addEventListener('DOMContentLoaded', function () {
     addBook();
     this.reset();
   });
+
+  const submitSearch = document.getElementById('searchBook');
+  submitSearch.addEventListener('submit', function (event) {
+    event.preventDefault();
+    searchBook();
+    // this.reset();
+    console.log('Submit Search: aman');
+  });
 });
 
-document.addEventListener(RENDER_EVENT, function () {
-  console.log(books);
+document.addEventListener(RENDER_EVENT, function (event) {
+  const bookList = event.detail || books;
+
+  console.log(bookList);
   const incompleteBookList = document.getElementById('incompleteList');
   incompleteBookList.innerHTML = '';
   const completeBookList = document.getElementById('completeList');
@@ -35,7 +69,7 @@ document.addEventListener(RENDER_EVENT, function () {
 
   console.log('RENDER EVENT: tengah');
 
-  for (const bookItem of books) {
+  for (const bookItem of bookList) {
     if (bookItem.isComplete) {
       const bookElement = makeBook(bookItem);
       completeBookList.append(bookElement);
