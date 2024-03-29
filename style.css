@@ -166,11 +166,11 @@ main {
 }
 
 .bookShelf > .list > .item_book > .action > .red {
-    background-color: darkred;
+    background-color: red;
     color: white;
 }
 
-.book_shelf > .book_list > .book_item > .action > .yellow {
+.bookShelf > .list > .item_book > .action > .yellow {
     background-color: yellow;
     color: white;
 }

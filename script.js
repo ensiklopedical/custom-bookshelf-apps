@@ -1,7 +1,23 @@
 const books = [];
 const RENDER_EVENT = 'render-book';
 
+function saveData() {
+  localStorage.setItem('BOOKS', JSON.stringify(books));
+}
+
+function loadDataFromStorage() {
+  const data = localStorage.getItem('BOOKS');
+  if (data !== null) {
+    const parsedData = JSON.parse(data);
+    for (const book of parsedData) {
+      books.push(book);
+      document.dispatchEvent(new Event(RENDER_EVENT));
+    }
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
+  loadDataFromStorage();
   const submitForm = document.getElementById('inputBook');
   submitForm.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -74,6 +90,7 @@ function addBook() {
   books.push(bookObject);
 
   document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
   
   // console.log('addBook: aman');
 
@@ -178,18 +195,21 @@ function addBookToCompleted(id) {
   const bookItem = books.find(bookItem => bookItem.id == id);
   bookItem.isComplete = true;
   document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
 }
 
 function undoBookFromCompleted(id) {
   const bookItem = books.find(bookItem => bookItem.id == id);
   bookItem.isComplete = false;
   document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
 }
 
 function removeBook(id) {
   const bookIndex = books.findIndex(bookItem => bookItem.id == id);
   books.splice(bookIndex, 1);
   document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
 }
 
 
