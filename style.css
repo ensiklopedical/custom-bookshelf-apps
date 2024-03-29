@@ -4,11 +4,14 @@
     box-sizing: border-box;
 }
 
-body, input, button {
+body,
+input,
+button {
     font-family: 'Open Sans', sans-serif;
 }
 
-input, button {
+input,
+button {
     font-size: 16px;
 }
 
@@ -37,16 +40,16 @@ main {
     border-radius: 10px;
 }
 
-.inputSection > h2 {
+.inputSection>h2 {
     text-align: center;
     color: cornflowerblue;
 }
 
-.inputSection > form > .input {
+.inputSection>form>.input {
     margin: 8px 0;
 }
 
-.inputSection > form > button {
+.inputSection>form>button {
     background-color: cornflowerblue;
     color: white;
     border: 0;
@@ -57,11 +60,11 @@ main {
     cursor: pointer;
 }
 
-.inputSection > form > button > span {
+.inputSection>form>button>span {
     font-weight: bold;
 }
 
-.inputSection > form > .input > input {
+.inputSection>form>.input>input {
     display: block;
     width: 100%;
     padding: 8px;
@@ -69,18 +72,18 @@ main {
 }
 
 
-.inputSection > form > .input > label {
+.inputSection>form>.input>label {
     color: cornflowerblue;
     font-weight: bold;
 }
 
-.inputSection > form > .input_inline {
+.inputSection>form>.input_inline {
     margin: 12px 0;
     display: flex;
     align-items: center;
 }
 
-.inputSection > form > .input_inline > label {
+.inputSection>form>.input_inline>label {
     color: cornflowerblue;
     font-weight: bold;
     margin-right: 10px;
@@ -96,11 +99,11 @@ main {
     border-radius: 10px;
 }
 
-.search_section > h2 {
+.search_section>h2 {
     color: cornflowerblue;
 }
 
-.search_section > form {
+.search_section>form {
     padding: 16px;
     width: 100%;
     display: grid;
@@ -108,17 +111,17 @@ main {
     grid-gap: 10px;
 }
 
-.search_section > form > label {
+.search_section>form>label {
     display: flex;
     align-items: center;
 }
 
-.search_section > form > input {
+.search_section>form>input {
     padding: 5px;
     border-radius: 5px;
 }
 
-.search_section > form > button {
+.search_section>form>button {
     background-color: cornflowerblue;
     color: white;
     border: 0;
@@ -133,26 +136,27 @@ main {
     border-radius: 10px;
 }
 
-.bookShelf > h2 {
+.bookShelf>h2 {
     color: cornflowerblue;
 }
 
-.bookShelf > .list {
+.bookShelf>.list {
     padding: 16px;
 }
 
-.bookShelf > .list > .item_book {
+.bookShelf>.list>.item_book {
     padding: 8px 16px 16px 16px;
     border: 1px solid black;
     border-radius: 5px;
     margin: 10px 0;
 }
 
-.bookShelf > .list > .item_book > h3, p {
+.bookShelf>.list>.item_book>h3,
+p {
     margin: 8px 0;
 }
 
-.bookShelf > .list > .item_book > .action > button {
+.bookShelf>.list>.item_book>.action>button {
     border: 0;
     padding: 5px;
     margin: 0 5px 0 0;
@@ -160,18 +164,17 @@ main {
     cursor: pointer;
 }
 
-.bookShelf > .list > .item_book > .action > .green {
+.bookShelf>.list>.item_book>.action>.green {
     background-color: blue;
     color: white;
 }
 
-.bookShelf > .list > .item_book > .action > .red {
+.bookShelf>.list>.item_book>.action>.red {
     background-color: red;
     color: white;
 }
 
-.bookShelf > .list > .item_book > .action > .yellow {
+.bookShelf>.list>.item_book>.action>.yellow {
     background-color: yellow;
     color: white;
 }
-

@@ -29,23 +29,23 @@ function searchBook() {
   document.dispatchEvent(new CustomEvent(RENDER_EVENT, { detail: searchResult }));
   console.log('searchBook: aman');
 
-  
+
   //document.getElementById('searchTitle').value = '';
 
-  
+
   AddRemoveSearch();
-  
+
 }
 
 function AddRemoveSearch() {
   // const removeSearchButton = document.createElement('button');
   removeSearchButton.classList.add('XXX');
   removeSearchButton.innerText = "X";
-  
+
   //const submitSearch = document.getElementById('searchBook');
   submitSearch.append(removeSearchButton);
   console.log('removeSearch: aman')
-  
+
   removeSearchButton.addEventListener('click', function () {
     removeSearch();
     removeSearchButton.remove();
@@ -54,8 +54,8 @@ function AddRemoveSearch() {
 
 function removeSearch() {
 
-    document.dispatchEvent(new Event(RENDER_EVENT));
-    document.getElementById('searchTitle').value = '';
+  document.dispatchEvent(new Event(RENDER_EVENT));
+  document.getElementById('searchTitle').value = '';
 
 }
 
@@ -92,7 +92,7 @@ document.addEventListener(RENDER_EVENT, function (event) {
     if (bookItem.isComplete) {
       const bookElement = makeBook(bookItem);
       completeBookList.append(bookElement);
-    } else {    
+    } else {
       const bookElement = makeBook(bookItem);
       incompleteBookList.append(bookElement);
     }
@@ -144,7 +144,7 @@ function addBook() {
 
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
-  
+
   // console.log('addBook: aman');
 
 }
@@ -185,8 +185,8 @@ function makeBook(bookObject) {
   const actionContainer = document.createElement('div');
   actionContainer.classList.add('action');
 
-  
-  if (bookObject.isComplete){
+
+  if (bookObject.isComplete) {
     // =============Undo Button================
     const undoButton = document.createElement('button');
     undoButton.classList.add('yellow');
@@ -208,11 +208,11 @@ function makeBook(bookObject) {
     removeButton.addEventListener('click', function () {
       removeBook(bookObject.id);
     });
-    
+
     actionContainer.append(undoButton, removeButton);
 
-  } else{
-  // =============Belum Selesai Dibaca================
+  } else {
+    // =============Belum Selesai Dibaca================
     const doneButton = document.createElement('button');
     doneButton.classList.add('green');
     doneButton.innerText = "Done Read";
@@ -231,7 +231,7 @@ function makeBook(bookObject) {
 
     actionContainer.append(doneButton, removeButton);
   }
-  
+
 
   // Item Book Container 
   const itemBookContainer = document.createElement('article');
