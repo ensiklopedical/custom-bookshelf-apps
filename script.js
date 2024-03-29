@@ -84,9 +84,6 @@ function makeBook(bookObject) {
   removeButton.classList.add('red');
   removeButton.innerText = "Remove Book";
 
-  // Action Container
-  
-
   if (bookObject.check){
     // =============Selesai Dibaca================
     const undoButton = document.createElement('button');
