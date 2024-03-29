@@ -20,7 +20,7 @@ document.addEventListener(RENDER_EVENT, function () {
   console.log('RENDER EVENT: tengah');
 
   for (const bookItem of books) {
-    if (bookItem.check) {
+    if (bookItem.isComplete) {
       const bookElement = makeBook(bookItem);
       completeBookList.append(bookElement);
     } else {    
@@ -32,17 +32,19 @@ document.addEventListener(RENDER_EVENT, function () {
   console.log('RENDER EVENT: aman');
 });
 
+/*
 const undo = document.getElementsByClassName('yellow');
 undo.addEventListener('click', function () {
-  bookObject.check = false;
+  bookObject.isComplete = false;
   document.dispatchEvent(new Event(RENDER_EVENT));
 });
 
 const undoButton = document.getElementsByClassName('yellow');
 doneButton.addEventListener('click', function () {
-  bookObject.check = true;
+  bookObject.isComplete = true;
   document.dispatchEvent(new Event(RENDER_EVENT));
 });
+*/
 
 
 function generateId() {
@@ -50,14 +52,14 @@ function generateId() {
   return +new Date();
 }
 
-function generateBookObject(id, book, author, year, check) {
+function generateBookObject(id, book, author, year, isComplete) {
   console.log('generateBookObject : aman');
   return {
     id,
     book,
     author,
     year,
-    check
+    isComplete
   }
 }
 
@@ -65,10 +67,10 @@ function addBook() {
   const bookTitle = document.getElementById('inputTitle').value;
   const bookAuthor = document.getElementById('inputAuthor').value;
   const bookYear = document.getElementById('inputYear').value;
-  const bookCheck = document.getElementById('inputIsComplete').checked;
+  const isComplete = document.getElementById('inputIsComplete').checked;
 
   const generatedID = generateId();
-  const bookObject = generateBookObject(generatedID, bookTitle, bookAuthor, bookYear, bookCheck);
+  const bookObject = generateBookObject(generatedID, bookTitle, bookAuthor, bookYear, isComplete);
   books.push(bookObject);
 
   document.dispatchEvent(new Event(RENDER_EVENT));
@@ -114,7 +116,7 @@ function makeBook(bookObject) {
   actionContainer.classList.add('action');
 
   
-  if (bookObject.check){
+  if (bookObject.isComplete){
     // =============Undo Button================
     const undoButton = document.createElement('button');
     undoButton.classList.add('yellow');
@@ -134,7 +136,7 @@ function makeBook(bookObject) {
     removeButton.innerText = "Remove Book";
 
     removeButton.addEventListener('click', function () {
-      removeTaskFromCompleted(bookObject.id);
+      removeBook(bookObject.id);
     });
     
     actionContainer.append(undoButton, removeButton);
@@ -154,9 +156,9 @@ function makeBook(bookObject) {
     removeButton.innerText = "Remove Book";
 
     removeButton.addEventListener('click', function () {
-      removeTaskFromIncompleted(bookObject.id);
+      removeBook(bookObject.id);
     });
-    
+
     actionContainer.append(doneButton, removeButton);
   }
   
@@ -172,6 +174,22 @@ function makeBook(bookObject) {
   return itemBookContainer;
 }
 
+function addBookToCompleted(id) {
+  const bookItem = books.find(bookItem => bookItem.id == id);
+  bookItem.isComplete = true;
+  document.dispatchEvent(new Event(RENDER_EVENT));
+}
 
+function undoBookFromCompleted(id) {
+  const bookItem = books.find(bookItem => bookItem.id == id);
+  bookItem.isComplete = false;
+  document.dispatchEvent(new Event(RENDER_EVENT));
+}
+
+function removeBook(id) {
+  const bookIndex = books.findIndex(bookItem => bookItem.id == id);
+  books.splice(bookIndex, 1);
+  document.dispatchEvent(new Event(RENDER_EVENT));
+}
 
 
