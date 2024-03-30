@@ -149,6 +149,7 @@ function addBook() {
 
 }
 
+var removeButton;
 
 function makeBook(bookObject) {
 
@@ -185,6 +186,17 @@ function makeBook(bookObject) {
   const actionContainer = document.createElement('div');
   actionContainer.classList.add('action');
 
+  removeButton = document.createElement('button');
+  removeButton.classList.add('red');
+  removeButton.innerText = "Remove Book";
+  removeButton.setAttribute('id', 'removveButton');
+
+  console.log(removeButton);
+
+  removeButton.addEventListener('click', function () {
+    removeBook(bookObject.id);
+  });
+
 
   if (bookObject.isComplete) {
     // =============Undo Button================
@@ -201,13 +213,16 @@ function makeBook(bookObject) {
     });
 
     // =============Remove Button================
+    /*
     const removeButton = document.createElement('button');
     removeButton.classList.add('red');
     removeButton.innerText = "Remove Book";
+    removeButton.setAttribute('id', 'removeButton');
 
     removeButton.addEventListener('click', function () {
       removeBook(bookObject.id);
     });
+    */
 
     actionContainer.append(undoButton, removeButton);
 
@@ -221,13 +236,16 @@ function makeBook(bookObject) {
       addBookToCompleted(bookObject.id);
     });
 
+    /*
     const removeButton = document.createElement('button');
     removeButton.classList.add('red');
     removeButton.innerText = "Remove Book";
+    removeButton.setAttribute('id', 'removeButton');
 
     removeButton.addEventListener('click', function () {
       removeBook(bookObject.id);
     });
+    */
 
     actionContainer.append(doneButton, removeButton);
   }
@@ -269,6 +287,82 @@ function removeBook(id) {
   saveData();
   removeSearchButton.remove();
   document.getElementById('searchTitle').value = '';
+  modelRemove();
 }
+
+function modelRemove() {
+
+  // Get the modal
+  const modal = document.getElementById('remove-modal');
+  modal.style.display = 'block';
+  console.log(modal);
+
+  // Get the <span> element that closes the modal
+  const span = document.getElementsByClassName('close')[0];
+  console.log(span);
+
+  span.addEventListener('click', function () {
+    modal.style.display = 'none';
+    console.log('span on click: aman');
+  });
+
+  // Get the button that opens the modal
+  const btn = removeButton;
+  console.log(btn);
+
+  window.addEventListener('click', function (event) {
+    if (event.target == modal) {
+      modal.style.display = 'none';
+      console.log('window on click: aman');
+    }
+  });
+
+  
+
+
+
+
+
+
+  /*
+  // When the user clicks the button, open the modal 
+  // Define custom events
+  const openModalEvent = new Event('openModal');
+  const closeModalEvent = new Event('closeModal');
+
+  // When the user clicks the button, dispatch the openModal event
+  btn.addEventListener('click', function () {
+    modal.dispatchEvent(openModalEvent);
+    console.log('btn: aman');
+  });
+
+  // When the user clicks on <span> (x), dispatch the closeModal event
+  span.addEventListener('click', function () {
+    modal.dispatchEvent(closeModalEvent);
+    console.log('span: aman');
+  });
+
+  // When the user clicks anywhere outside of the modal, dispatch the closeModal event
+  window.addEventListener('click', function (event) {
+    if (event.target == modal) {
+      modal.dispatchEvent(closeModalEvent);
+      console.log('window: aman');
+    }
+  });
+
+  // Add event listeners to the modal for the custom events
+  modal.addEventListener('openModal', function () {
+    this.style.display = 'block';
+    console.log('btn on click: aman');
+  });
+
+  modal.addEventListener('closeModal', function () {
+    this.style.display = 'none';
+    console.log('span on click: aman');
+    console.log('window on click: aman');
+  });
+  */
+}
+
 
 
