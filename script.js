@@ -96,7 +96,7 @@ function generateBookObject(id, book, author, year, isComplete) {
 function addBook() {
   const bookTitle = document.getElementById('inputTitle').value;
   const bookAuthor = document.getElementById('inputAuthor').value;
-  const bookYear = document.getElementById('inputYear').value;
+  const bookYear = Number(document.getElementById('inputYear').value);
   const isComplete = document.getElementById('inputIsComplete').checked;
   const generatedID = generateId();
   const bookObject = generateBookObject(generatedID, bookTitle, bookAuthor, bookYear, isComplete);
@@ -111,7 +111,7 @@ function makeBook(bookObject) {
   const bookAuthor = document.createElement('p');
   bookAuthor.innerText = bookObject.author;
   const bookYear = document.createElement('p');
-  bookYear.innerText = bookObject.year;
+  bookYear.innerText = Number(bookObject.year);
   const actionContainer = document.createElement('div');
   actionContainer.classList.add('action');
   const removeButton = document.createElement('button');
