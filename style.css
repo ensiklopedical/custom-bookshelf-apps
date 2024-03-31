@@ -228,6 +228,16 @@ p {
     cursor: pointer;
 }
 
+.modal>.modal-content>button{
+    padding: 2px 8px;
+    background-color: #987dfe;
+    color: white;
+    font-weight: bold;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
     main {
         flex-direction: column;
