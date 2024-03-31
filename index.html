@@ -8,9 +8,10 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Bookshelf App</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto+Slab:wght@100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
@@ -20,48 +21,52 @@
       <h1 class="headerTitle">Bookshelf App</h1>
     </header>
     <main>
-      <section class="inputSection">
-        <h2>Masukkan Buku Baru</h2>
-        <form id="inputBook">
-          <div class="input">
-            <label for="inputTitle">Judul Buku</label>
-            <input id="inputTitle" type="text" required />
-          </div>
-          <div class="input">
-            <label for="inputAuthor">Penulis Buku</label>
-            <input id="inputAuthor" type="text" required />
-          </div>
-          <div class="input">
-            <label for="inputYear">Tahun Rilis</label>
-            <input id="inputYear" type="number" required />
-          </div>
-          <div class="input_inline">
-            <label for="inputIsComplete">Selesai Dibaca?</label>
-            <input id="inputIsComplete" type="checkbox" />
-          </div>
-          <button id="formSubmit" type="submit">Submit</button>
-        </form>
+      <section class="left-section">
+        <section class="inputSection">
+          <h2>Masukkan Buku Baru</h2>
+          <form id="inputBook">
+            <div class="input">
+              <label for="inputTitle">Judul</label>
+              <input id="inputTitle" type="text" required />
+            </div>
+            <div class="input">
+              <label for="inputAuthor">Penulis</label>
+              <input id="inputAuthor" type="text" required />
+            </div>
+            <div class="input">
+              <label for="inputYear">Tahun Rilis</label>
+              <input id="inputYear" type="number" required />
+            </div>
+            <div class="input_inline">
+              <label for="inputIsComplete">Selesai Dibaca?</label>
+              <input id="inputIsComplete" type="checkbox" />
+            </div>
+            <button id="formSubmit" type="submit">Submit</button>
+          </form>
+        </section>
       </section>
 
-      <section class="search_section">
-        <h2>Cari Buku (Opsional)</h2>
-        <form id="searchBook">
-          <label for="searchTitle">Judul</label>
-          <input id="searchTitle" type="text" />
-          <button id="searchSubmit" type="submit">Cari</button>
-        </form>
-      </section>
+      <section class="right-section">
+        <section class="search_section">
+          <h2>Cari Buku</h2>
+          <form id="searchBook">
+            <label for="searchTitle">Judul</label>
+            <input id="searchTitle" type="text" />
+            <button id="searchSubmit" type="submit">Cari</button>
+          </form>
+        </section>
 
-      <section class="bookShelf">
-        <h2>Belum selesai dibaca</h2>
+        <section class="bookShelf">
+          <h2>Belum selesai dibaca</h2>
 
-        <div id="incompleteList" class="list"></div>
-      </section>
+          <div id="incompleteList" class="list"></div>
+        </section>
 
-      <section class="bookShelf">
-        <h2>Selesai dibaca</h2>
+        <section class="bookShelf">
+          <h2>Selesai dibaca</h2>
 
-        <div id="completeList" class="list"></div>
+          <div id="completeList" class="list"></div>
+        </section>
       </section>
     </main>
     <div id="remove-modal" class="modal">
